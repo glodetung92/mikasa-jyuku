@@ -13,22 +13,14 @@ jobs:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: 📂 Sync files via SFTP
+        uses: milanmk/actions-file-deployer@v1.18
         with:
-          server: ${{ secrets.SFTP_SERVER }}
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          port: 22
-          protocol: sftp
-          server-dir: /home/kogaku-sha/www/
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.github/**
-            **/node_modules/**
-            **/wp-content/uploads/**
-            **/wp-content/cache/**
-            **/wp-content/backups/**
-            README.md
-            screenshot.png
+          remote-protocol: "sftp"
+          remote-host: ${{ secrets.SFTP_SERVER }}
+          remote-port: 22
+          remote-user: ${{ secrets.SFTP_USERNAME }}
+          remote-password: ${{ secrets.SFTP_PASSWORD }}
+          remote-path: "/home/kogaku-sha/www/"
+          sync-delta-excludes: ".git/ .github/ node_modules/ wp-content/uploads/ wp-content/cache/ wp-content/backups/ README.md screenshot.png"
+
