@@ -20,17 +20,27 @@
 // を使用し、必ず UTF-8 の BOM なし (UTF-8N) で保存してください。
 
 // ** MySQL 設定 - こちらの情報はホスティング先から入手してください。 ** //
-/** WordPress のためのデータベース名 */
-define('DB_NAME', 'kogaku-sha_home');
+$is_local = (isset($_SERVER['HTTP_HOST']) && in_array($_SERVER['HTTP_HOST'], ['localhost', 'mikasajyuku.test'])) 
+            || (isset($_SERVER['REMOTE_ADDR']) && in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']))
+            || (php_sapi_name() === 'cli');
 
-/** MySQL データベースのユーザー名 */
-define('DB_USER', 'kogaku-sha');
-
-/** MySQL データベースのパスワード */
-define('DB_PASSWORD', 'dekirukoto2134');
-
-/** MySQL のホスト名 */
-define('DB_HOST', 'mysql57.kogaku-sha.sakura.ne.jp');
+if ($is_local) {
+    define('DB_NAME', 'kogaku-sha_home');
+    define('DB_USER', 'root');
+    define('DB_PASSWORD', '');
+    define('DB_HOST', '127.0.0.1');
+    
+    // Automatically set URLs for Local development
+    if (isset($_SERVER['HTTP_HOST'])) {
+        define('WP_HOME', 'http://' . $_SERVER['HTTP_HOST'] . '/mikasajyuku/home');
+        define('WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST'] . '/mikasajyuku/home');
+    }
+} else {
+    define('DB_NAME', 'kogaku-sha_home');
+    define('DB_USER', 'kogaku-sha');
+    define('DB_PASSWORD', 'dekirukoto2134');
+    define('DB_HOST', 'mysql57.kogaku-sha.sakura.ne.jp');
+}
 
 /** データベースのテーブルを作成する際のデータベースのキャラクターセット */
 define('DB_CHARSET', 'utf8');

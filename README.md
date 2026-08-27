@@ -11,6 +11,7 @@ Dự án này là sự kết hợp của mã nguồn Custom PHP (ở thư mục 
 * **Trang chủ chính (Custom PHP)**: Nằm trực tiếp ở thư mục gốc `/`. Giao diện chính là file [`index.php`](file:///c:/laragon/www/mikasajyuku/index.php).
 * **Trang giới thiệu (WordPress 1)**: Nằm trong thư mục [`/mikasa_hp/`](file:///c:/laragon/www/mikasajyuku/mikasa_hp/).
 * **Trang Blog tin tức (WordPress 2)**: Nằm trong thư mục [`/blog/`](file:///c:/laragon/www/mikasajyuku/blog/).
+* **Trang Home cũ (WordPress 3)**: Nằm trong thư mục [`/home/`](file:///c:/laragon/www/mikasajyuku/home/).
 
 ---
 
@@ -25,6 +26,7 @@ graph TD
     User -->|/| RootSite[Trang chủ chính: mikasajyuku.jp<br>Thư mục gốc /]
     User -->|/mikasa_hp/| MikasaHP[Trang giới thiệu: mikasajyuku.jp/mikasa_hp/<br>Thư mục /mikasa_hp/]
     User -->|/blog/| BlogSite[Trang Blog: mikasajyuku.jp/blog/<br>Thư mục /blog/]
+    User -->|/home/| HomeSite[Trang Home cũ: mikasajyuku.jp/home/<br>Thư mục /home/]
 
     %% Chi tiết Phân hệ gốc (Root)
     subgraph RootFolder [Thư mục Gốc / - Custom PHP]
@@ -50,23 +52,34 @@ graph TD
         WpContent2["wp-content/<br>(Themes & Plugins)"]
     end
 
+    %% Chi tiết Phân hệ Home cũ (home)
+    subgraph HomeFolder [Thư mục /home/ - WordPress 3]
+        direction TB
+        WpConfig3["wp-config.php<br>(Cấu hình DB)"]
+        WpContent3["wp-content/<br>(Themes & Plugins)"]
+    end
+
     %% Các Database
     subgraph Databases [Hệ thống Cơ sở dữ liệu]
         DB_MikasaHP[(Database: kogaku-sha_mikasa_hp)]
         DB_Blog[(Database: kogaku-sha_mksdb)]
+        DB_Home[(Database: kogaku-sha_home)]
     end
 
     %% Mối quan hệ Database
     DbConn -->|Kết nối đọc bảng tin mikasahp_wpposts| DB_MikasaHP
     WpConfig1 -->|Kết nối lưu trữ nội dung| DB_MikasaHP
     WpConfig2 -->|Kết nối lưu trữ bài viết blog| DB_Blog
+    WpConfig3 -->|Kết nối lưu trữ nội dung home cũ| DB_Home
 
     %% Định dạng phong cách
     style RootSite fill:#f9f,stroke:#333,stroke-width:2px
     style MikasaHP fill:#bbf,stroke:#333,stroke-width:2px
     style BlogSite fill:#bfb,stroke:#333,stroke-width:2px
+    style HomeSite fill:#fbf,stroke:#333,stroke-width:2px
     style DB_MikasaHP fill:#fdd,stroke:#333,stroke-width:2px
     style DB_Blog fill:#ffd,stroke:#333,stroke-width:2px
+    style DB_Home fill:#dff,stroke:#333,stroke-width:2px
 ```
 
 ---
@@ -80,6 +93,7 @@ Mỗi phân hệ có một file cấu hình kết nối Database riêng. Dưới
 | **Trang chủ gốc** | [`controller/db_connection.php`](file:///c:/laragon/www/mikasajyuku/controller/db_connection.php) | `kogaku-sha_mikasa_hp` | Dùng PHP thuần đọc bảng tin |
 | **Trang giới thiệu** | [`mikasa_hp/wp-config.php`](file:///c:/laragon/www/mikasajyuku/mikasa_hp/wp-config.php) | `kogaku-sha_mikasa_hp` | Sử dụng prefix bảng `mikasahp_wp` |
 | **Trang Blog** | [`blog/wp-config.php`](file:///c:/laragon/www/mikasajyuku/blog/wp-config.php) | `kogaku-sha_mksdb` | Sử dụng prefix bảng `mks_` |
+| **Trang Home cũ** | [`home/wp-config.php`](file:///c:/laragon/www/mikasajyuku/home/wp-config.php) | `kogaku-sha_home` | Sử dụng prefix bảng `mks_home` |
 
 > [!IMPORTANT]
 > Phần **Bảng tin (掲示板)** trên trang chủ gốc đọc dữ liệu từ bảng `mikasahp_wpposts` thuộc cơ sở dữ liệu `kogaku-sha_mikasa_hp`. Do đó, khi bạn đăng bài viết mới trên trang giới thiệu `/mikasa_hp/`, bài viết sẽ tự động xuất hiện ở phần bảng tin trang chủ.
@@ -93,10 +107,11 @@ Mỗi phân hệ có một file cấu hình kết nối Database riêng. Dưới
 ### Bước 1: Chuẩn bị Database Local
 1. Mở Laragon, khởi động **MySQL** và **Apache**.
 2. Truy cập vào phpMyAdmin (hoặc Database tool của bạn như HeidiSQL).
-3. Tạo mới 2 Database trống tương ứng trên local:
+3. Tạo mới 3 Database trống tương ứng trên local:
    * `kogaku-sha_mikasa_hp`
    * `kogaku-sha_mksdb`
-4. Import dữ liệu từ bản backup SQL của bạn vào 2 Database này.
+   * `kogaku-sha_home`
+4. Import dữ liệu từ bản backup SQL của bạn vào 3 Database này.
 
 ### Bước 2: Cập nhật thông số kết nối Local
 Thay đổi thông số kết nối Database từ Online sang Local trong các file cấu hình.
@@ -128,6 +143,14 @@ define('DB_HOST', '127.0.0.1');
 define('DB_USER', 'root');
 define('DB_PASSWORD', '');
 define('DB_NAME', 'kogaku-sha_mksdb');
+```
+
+#### D. Cập nhật trang Home cũ ([`home/wp-config.php`](file:///c:/laragon/www/mikasajyuku/home/wp-config.php)):
+```php
+define('DB_HOST', '127.0.0.1');
+define('DB_USER', 'root');
+define('DB_PASSWORD', '');
+define('DB_NAME', 'kogaku-sha_home');
 ```
 
 ---
