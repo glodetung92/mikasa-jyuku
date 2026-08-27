@@ -92,11 +92,12 @@ define('WPLANG', 'ja');
  * テーマおよびプラグインの開発者には、その開発環境においてこの WP_DEBUG を使用することを強く推奨します。
  */
 /* define('WP_DEBUG', false); */
-define(‘WP_DEBUG’, true);
-define(‘WP_DEBUG_LOG’, './debug.log');
-define(‘WP_DEBUG_DISPLAY’, false);
+define('WP_DEBUG', true);
+define('WP_DEBUG_LOG', './debug.log');
+define('WP_DEBUG_DISPLAY', true);
+@ini_set('display_errors', 1);
 
-/* define(‘RELOCATE’, true); */
+/* define('RELOCATE', true); */
 
 /* define('WP_SITEURL','http://mikasajyuku.jp/blog/'); */
 /* define('WP_HOME','http://mikasajyuku.jp/blog/'); */

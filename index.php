@@ -2,6 +2,14 @@
 	include 'controller/db_connection.php';
 
 	$conn = OpenCon();
+
+	$http_host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'mikasajyuku.jp';
+	$base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $http_host;
+	if ($http_host === 'localhost') {
+		$base_url .= '/mikasajyuku/';
+	} else {
+		$base_url .= '/';
+	}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -42,20 +50,20 @@
 					<h1>三笠塾</h1>
 				</div>
 							<h2>
-							<span><a href="https://mikasajyuku.jp/" class="thispage">HOME</a></span>
-							<span><a href="./mikasa_hp/" target="_blank">三笠塾</a></span>
-							<span><a href="https://mikasajyuku.jp/blog/" target="_blank">三笠塾便り</a></span>
+							<span><a href="<?= $base_url ?>" class="thispage">HOME</a></span>
+							<span><a href="<?= $base_url ?>mikasa_hp/" target="_blank">三笠塾</a></span>
+							<span><a href="<?= $base_url ?>blog/" target="_blank">三笠塾便り</a></span>
 							</h2>
 					
 				<!-- ベトナム語自動翻訳 -->
 				<div align="right">
-					<a href="https://translate.google.com/translate?hl=&sl=ja&tl=vi&u=https://mikasajyuku.jp/index.html"><img src="./images/trans_vietnamese.png" width="37px" style="margin-right:25px;" title="Vietnamese" alt="ベトナム語"/></a>
+					<a href="https://translate.google.com/translate?hl=&sl=ja&tl=vi&u=<?= urlencode($base_url . 'index.html') ?>"><img src="./images/trans_vietnamese.png" width="37px" style="margin-right:25px;" title="Vietnamese" alt="ベトナム語"/></a>
 				</div>
 			</header>
 
             <div class="margin40">
                 <p class="catchy centered" style="margin-bottom:-20px">
-                	<a class="catchy" href="https://mikasajyuku.jp/mikasa_hp/%e4%b8%89%e7%ac%a0%e5%a1%be%e3%81%ae%e5%8b%89%e5%bc%b7%e4%bc%9a/%e3%82%aa%e3%83%b3%e3%83%a9%e3%82%a4%e3%83%b3%e6%8e%88%e6%a5%ad/" target="_blank">
+                	<a class="catchy" href="<?= $base_url ?>mikasa_hp/%e4%b8%89%e7%ac%a0%e5%a1%be%e3%81%ae%e5%8b%89%e5%bc%b7%e4%bc%9a/%e3%82%aa%e3%83%b3%e3%83%a9%e3%82%a4%e3%83%b3%e6%8e%88%e6%a5%ad/" target="_blank">
                     <span class="blinking">オンライン授業のご案内<br></span>
                 	</a>
 
@@ -78,17 +86,17 @@
 											<div class="mask"><div class="caption">三笠塾/オンライン三笠塾<br>生徒募集中！</div></div>
 										</a></li>
 										<li class="chdisplay">
-										    <a href="https://mikasajyuku.jp/mikasa_hp/%e5%a1%be%e9%95%b7%e3%81%94%e3%81%82%e3%81%84%e3%81%95%e3%81%a4/">
+										    <a href="<?= $base_url ?>mikasa_hp/%e5%a1%be%e9%95%b7%e3%81%94%e3%81%82%e3%81%84%e3%81%95%e3%81%a4/">
 										    <img src="./images/carousel002.jpg" />
 											<div class="mask"><div class="caption">塾長ごあいさつ</div></div>
 										</a></li>
 										<li class="chdisplay">
-										    <a href="https://mikasajyuku.jp/mikasa_hp/%e4%b8%89%e7%ac%a0%e5%a1%be%e3%81%ae%e7%9b%ae%e7%9a%84/">
+										    <a href="<?= $base_url ?>mikasa_hp/%e4%b8%89%e7%ac%a0%e5%a1%be%e3%81%ae%e7%9b%ae%e7%9a%84/">
 										    <img src="./images/carousel003.jpg" />
 											<div class="mask"><div class="caption">三笠塾について</div></div>
 										</a></li>
 										<li class="chdisplay">
-											<a href="https://mikasajyuku.jp/jlpt.html">
+											<a href="<?= $base_url ?>jlpt.html">
 											<img src="./images/carousel004.jpg" />
 											<div class="mask"><div class="caption">JLPT試験結果</div></div>
 										</a></li>
@@ -99,20 +107,20 @@
 											<div class="mask"><div class="caption">塾生インタビュー</div></div>
 										</a></li>
 										<li class="chdisplay">
-										    <a href="https://mikasajyuku.jp/ssmikasa_hp/%e4%b8%89%e7%ac%a0%e5%a1%be%e3%81%ae%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88/">
+										    <a href="<?= $base_url ?>ssmikasa_hp/%e4%b8%89%e7%ac%a0%e5%a1%be%e3%81%ae%e3%82%a4%e3%83%9b%e3%83%b3%e3%83%88/">
 										    <img src="./images/carousel007.jpg" />
-											<div class="mask"><div class="caption">三笠塾のイベント</div></div>
+											<div class="mask"><div class="caption">三笠塾 của sự kiện</div></div>
 										</a></li>
 										<li class="chdisplay"><a href="./preparation.html"><img src="./images/carousel008.jpg" />
 											<div class="mask"><div class="caption">特定技能登録支援機関について</div></div>
 										</a></li>
 										<li class="chdisplay">
-										    <a href="https://mikasajyuku.jp/mikasa_hp/%e3%83%99%e3%83%88%e3%83%8a%e3%83%a0%e4%ba%ba%e5%ad%a6%e7%94%9f%e3%81%ae%e3%81%8a%e9%83%a8%e5%b1%8b%e6%8e%a2%e3%81%97/">
+										    <a href="<?= $base_url ?>mikasa_hp/%e3%83%99%e3%83%88%e3%83%8a%e3%83%a0%e4%ba%ba%e5%ad%a6%e7%94%9f%e3%81%ae%e3%81%8a%e9%83%a8%e5%b1%8b%e6%8e%a2%e3%81%97/">
 										    <img src="./images/carousel009.jpg" />
 											<div class="mask"><div class="caption">ベトナム人のお部屋探し</div></div>
 										</a></li>
 										<li class="chdisplay">
-										    <a href="https://mikasajyuku.jp/mikasa_hp/%e4%b8%89%e7%ac%a0%e5%a1%be%e3%81%ae%e3%82%a2%e3%82%af%e3%82%bb%e3%82%b9/">
+										    <a href="<?= $base_url ?>mikasa_hp/%e4%b8%89%e7%ac%a0%e5%a1%be%e3%81%ae%e3%82%a2%e3%82%af%e3%82%bb%e3%82%b9/">
 										    <img src="./images/carousel010.jpg" />
 											<div class="mask"><div class="caption">三笠塾へのアクセス</div></div>
 										</a></li>
@@ -136,7 +144,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<section class="link_site">
-									<a href="https://mikasajyuku.jp/blog/" target="_blank"><img src="./images/link-2-fixed.png" title="Mikasa-Juku Blog chính thức &#34;Bản tin Mikasa-Juku&#34;" alt="三笠塾便り"></a>
+									<a href="<?= $base_url ?>blog/" target="_blank"><img src="./images/link-2-fixed.png" title="Mikasa-Juku Blog chính thức &#34;Bản tin Mikasa-Juku&#34;" alt="三笠塾便り"></a>
 								</section>	
 							</div>
 						</div>
@@ -238,20 +246,20 @@
 					<!-- <button type="button" class="btn btn-default"><a href="https://www.facebook.com/Mikasaonline/" rel="nofollow" target="_blank"><i class="fab fa-facebook-f" style="color:#0068b7; font-size:2rem"></i></a></button> -->
                     <button type="button" class="btn btn-default"><a href="https://www.facebook.com/watch/Mikasaonline/" rel="nofollow" target="_blank" alt="まい先生のオンライン授業"><i class="fab fa-facebook-f" style="color:#0068b7; font-size:2rem"></i></a></button>
 					<button type="button" class="btn btn-default"><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" rel="nofollow" target="_blank"><i class="fab fa-twitter" style="color:#00a1e9; font-size:2rem"></i></a></button>
-					<button type="button" class="btn btn-default"><a href="mailto:info@mikasajyuku.org?subject=三笠塾オフィシャルウェブサイト&amp;body=https://mikasajyuku.jp/" rel="nofollow" target="_blank"><i class="fas fa-envelope" style="color:#778899; font-size:2rem"></i></a></button>
+					<button type="button" class="btn btn-default"><a href="mailto:info@mikasajyuku.org?subject=三笠塾オフィシャルウェブサイト&amp;body=<?= urlencode($base_url) ?>" rel="nofollow" target="_blank"><i class="fas fa-envelope" style="color:#778899; font-size:2rem"></i></a></button>
 					<!-- <button type="button" class="btn btn-default"><a href="#" rel="nofollow" target="_blank"><i class="fab fa-instagram" style="color:#777; font-size:2rem"></i></a></button> -->
 					<!-- <button type="button" class="btn btn-default"><a href="#" rel="nofollow" target="_blank"><i class="fab fa-youtube" style="color:#777; font-size:2rem"></i></a></button> -->
-					<button type="button" class="btn btn-default"><a href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fmikasajyuku.jp/index-01.html" rel="nofollow" target="_blank"><i class="fab fa-line" style="color:#32cd32; font-size:2rem"></i></a></button>
+					<button type="button" class="btn btn-default"><a href="https://social-plugins.line.me/lineit/share?url=<?= urlencode($base_url . 'index-01.html') ?>" rel="nofollow" target="_blank"><i class="fab fa-line" style="color:#32cd32; font-size:2rem"></i></a></button>
 				</form>
 			</div>
 
 			<footer>
 				<ul class="footer-nav">
-					<li><a href="https://mikasajyuku.jp/" class="thispage">HOME</a></li>
-                    <li><a href="https://mikasa_hp/">三笠塾</a></li>
-                    <li><a href="https://mikasajyuku.jp/blog/" target="_blank">ブログ「三笠塾便り」</a></li>
-					<li><a href="https://mikasajyuku.jp/mikasa_hp/%e4%b8%89%e7%ac%a0%e5%a1%be%e3%81%ae%e3%82%a2%e3%82%af%e3%82%bb%e3%82%b9/">三笠塾へのアクセス</a></li>
-					<li><a href="https://mikasajyuku.jp/mikasa_hp/%e3%81%8a%e5%95%8f%e3%81%84%e5%90%88%e3%82%8f%e3%81%9b/">お問い合わせ</a></li>
+					<li><a href="<?= $base_url ?>" class="thispage">HOME</a></li>
+                    <li><a href="<?= $base_url ?>mikasa_hp/">三笠塾</a></li>
+                    <li><a href="<?= $base_url ?>blog/" target="_blank">ブログ「三笠塾便り」</a></li>
+					<li><a href="<?= $base_url ?>mikasa_hp/%e4%b8%89%e7%ac%a0%e5%a1%be%e3%81%ae%e3%82%a2%e3%82%af%e3%82%bb%e3%82%b9/">三笠塾へのアクセス</a></li>
+					<li><a href="<?= $base_url ?>mikasa_hp/%e3%81%8a%e5%95%8f%e3%81%84%e5%90%88%e3%82%8f%e3%81%9b/">お問い合わせ</a></li>
 					<br>
 				</ul>
 				<table class="fixtable centered blue_text" style="font-size: 100%; line-height:100%;">
