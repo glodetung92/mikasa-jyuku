@@ -25,4 +25,6 @@ jobs:
           remote-password: ${{ secrets.SFTP_PASSWORD }}
           remote-path: "/home/kogaku-sha/www/mikasajyuku/"
           sync-delta-excludes: ".git/ .github/ node_modules/ wp-content/uploads/ wp-content/cache/ wp-content/backups/ README.md screenshot.png"
+          ssh-options: "-o StrictHostKeyChecking=no"
+          debug: "true"
 
