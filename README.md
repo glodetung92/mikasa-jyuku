@@ -14,6 +14,63 @@ Dự án này là sự kết hợp của mã nguồn Custom PHP (ở thư mục 
 
 ---
 
+## Sơ đồ cấu trúc hệ thống (Mermaid Diagram)
+
+```mermaid
+graph TD
+    %% Định nghĩa các lớp User / Client
+    User((Người dùng truy cập))
+
+    %% Phân nhánh URL chính
+    User -->|/| RootSite[Trang chủ chính: mikasajyuku.jp<br>Thư mục gốc /]
+    User -->|/mikasa_hp/| MikasaHP[Trang giới thiệu: mikasajyuku.jp/mikasa_hp/<br>Thư mục /mikasa_hp/]
+    User -->|/blog/| BlogSite[Trang Blog: mikasajyuku.jp/blog/<br>Thư mục /blog/]
+
+    %% Chi tiết Phân hệ gốc (Root)
+    subgraph RootFolder [Thư mục Gốc / - Custom PHP]
+        direction TB
+        IndexPHP["index.php<br>(Giao diện trang chủ)"]
+        DbConn["controller/db_connection.php<br>(Cấu hình kết nối DB)"]
+        Styles["styles/ (CSS)<br>js/ (Javascript)"]
+        IndexPHP --> DbConn
+        IndexPHP -.-> Styles
+    end
+
+    %% Chi tiết Phân hệ giới thiệu (mikasa_hp)
+    subgraph MikasaHpFolder [Thư mục /mikasa_hp/ - WordPress 1]
+        direction TB
+        WpConfig1["wp-config.php<br>(Cấu hình DB)"]
+        WpContent1["wp-content/<br>(Themes & Plugins)"]
+    end
+
+    %% Chi tiết Phân hệ Blog (blog)
+    subgraph BlogFolder [Thư mục /blog/ - WordPress 2]
+        direction TB
+        WpConfig2["wp-config.php<br>(Cấu hình DB)"]
+        WpContent2["wp-content/<br>(Themes & Plugins)"]
+    end
+
+    %% Các Database
+    subgraph Databases [Hệ thống Cơ sở dữ liệu]
+        DB_MikasaHP[(Database: kogaku-sha_mikasa_hp)]
+        DB_Blog[(Database: kogaku-sha_mksdb)]
+    end
+
+    %% Mối quan hệ Database
+    DbConn -->|Kết nối đọc bảng tin mikasahp_wpposts| DB_MikasaHP
+    WpConfig1 -->|Kết nối lưu trữ nội dung| DB_MikasaHP
+    WpConfig2 -->|Kết nối lưu trữ bài viết blog| DB_Blog
+
+    %% Định dạng phong cách
+    style RootSite fill:#f9f,stroke:#333,stroke-width:2px
+    style MikasaHP fill:#bbf,stroke:#333,stroke-width:2px
+    style BlogSite fill:#bfb,stroke:#333,stroke-width:2px
+    style DB_MikasaHP fill:#fdd,stroke:#333,stroke-width:2px
+    style DB_Blog fill:#ffd,stroke:#333,stroke-width:2px
+```
+
+---
+
 ## 2. Cấu trúc File & Database kết nối
 
 Mỗi phân hệ có một file cấu hình kết nối Database riêng. Dưới đây là thông tin chi tiết:
