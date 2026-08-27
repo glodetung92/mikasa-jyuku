@@ -1,0 +1,3 @@
+# 全クローラーを対象
+User-agent: *
+Disallow: /home

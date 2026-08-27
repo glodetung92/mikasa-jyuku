@@ -1,0 +1,118 @@
+@charset "utf-8";
+
+/*** ブラウザで出現する上部、左右の隙間を削除する　***/
+/*
+* {
+	margin: 0;
+	padding: 0; 
+	box-sizing: border-box;
+}
+*/
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+	overflow: hidden; /* auto; */
+	*font-size: small; /* WinIE */
+	*font: x-small; /* Win IE */
+}
+
+body {
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+#wrapper {
+	width: 100%;
+	min-width: 400px;
+	max-width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+	color: #333;
+	min-height: 100vh;
+}
+header {
+	background: linear-gradient(rgba(255,255,0,0.25), #ffffff);
+	background: -webkit-linear-gradient(rgba(255,255,0,0.25), #ffffff); /*safari use*/
+	margin: -40px -200% 0 -200%; /* マージンを追記 */
+	padding: 0 200% 0 200%; /* マージンで横にはみ出した部分を戻す */
+	font-size:1em;
+}
+header h2 {
+	padding-top: 20px;
+	font-size: 2.0rem;
+}
+
+/***　これよりフッターの設定　***/
+footer{
+	background: linear-gradient(#ffffff, rgba(255,255,0,0.5));
+	background: -webkit-linear-gradient(#ffffff,rgba(255,255,0,0.5)); /*safari use*/
+	margin: 0 -200%; /* マージンを追記 */
+	padding: 0 200% 3% 200%;/* マージンで横にはみ出した部分を戻す */
+	height: auto;
+	color: #333; /* #ff4500; */
+/*	position: absolute;/*←絶対位置　*/
+	bottom: 0; /*下に固定*/
+}
+
+/***　その他のスタイル　***/
+.blue_text {
+	color: #0000cd !important;
+}
+.centered {
+/*	margin-left: auto; */
+/*	margin-right: auto; */
+	text-align: center;
+}
+.mgntop20 {
+	margin-top: 20px;
+}
+
+hr.ridgeline {
+	background-image: url(../images/ridgeline-s.png);
+	height: 15px;
+	border: none;
+	opacity: 0.75;
+	margin: 0 -200%; /* マージンを追記 */
+	padding: 0 200% 0 200%; /* マージンで横にはみ出した部分を戻す */
+	font-size:1em;
+}
+
+
+/*** レスポンシブ対応 ***/
+/* ＰＣ用設定　*/
+@media screen and (min-width: 600px) {
+	body{
+		width: auto;
+	}
+	}
+	.bosyuu {
+/*		margin-right: 0px !important; */
+/*		margin-left: 10px !important; */
+		font-size:1.2rem"
+	}
+}
+/* タブレット用設定　*/
+@media screen and (max-width: 599px) {
+	body{
+		width: 100%; /* auto; */
+	}
+	.bosyuu {
+		margin-right: 30px !important;
+		margin-left: 10px !important;
+		font-size:1.2rem"
+	}
+}
+/* スマホ用設定　*/
+@media screen and (max-width: 479px) {
+	body{
+		width: 100%; /* auto; */
+	}
+	.bosyuu {
+		margin-right: 30px !important;
+		margin-left: 10px !important;
+		font-size:1.0rem"
+	}
+}
+

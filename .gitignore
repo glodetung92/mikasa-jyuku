@@ -1,0 +1,16 @@
+# Bỏ qua thư viện và node
+/node_modules
+/vendor
+
+# Bỏ qua cache và log
+*.log
+.env
+
+# Bỏ qua các file tạm hệ thống
+.DS_Store
+Thumbs.db
+
+*.MOV
+*.mov
+*.mp4
+*.zip

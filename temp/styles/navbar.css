@@ -1,0 +1,139 @@
+/* mod_nav
+-----------------------------------------*/
+/* .mod_nav */ {
+ padding: 30px 0 30px 0;
+ background-color: #FFF;
+ /* box-shadow */
+ -webkit-box-shadow: 0px 2px 4px #CCC;
+ -moz-box-shadow: 0px 2px 4px #CCC;
+ box-shadow: 0px 2px 4px #CCC;
+}
+ 
+@media screen and (max-width:768px) {
+.mod_nav {
+ position:relative;
+ padding: 0;
+ height: 50px;
+}
+}
+/* navtitle */ 
+.mod_nav p.navtitle {
+ display: none;
+}
+ 
+@media screen and (max-width:768px) {
+.mod_nav p.navtitle {
+ position:absolute;
+ top:8px;
+ left:10px;
+ display: block;
+ font-size:20px;
+ cursor:pointer;
+}
+.mod_nav p.navtitle i{
+ font-size:24px;
+}
+.mod_nav p.navtitle span{
+    display: block;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+}
+
+/* mod_nav_inner */
+.mod_nav_inner {
+}
+@media screen and (max-width:768px) {
+.mod_nav_inner {
+ display:none;
+ position:relative;
+ top:45px;
+ left:0;
+ background-color:#FFF;
+}
+}
+.mod_nav_inner ul {
+/* margin: 0 20px 0 20px; */
+ text-align: right;
+}
+@media screen and (max-width:768px) {
+.mod_nav_inner ul {
+ margin: 0;
+ text-align: left;
+ border-top:solid 1px #CCC;
+}
+}
+.mod_nav_inner ul li {
+ display: inline-block;
+/* margin: 0 20px 0 20px; */
+}
+@media screen and (max-width:768px) {
+.mod_nav_inner ul li {
+ display: block;
+ margin:0;
+ border-bottom:solid 1px #CCC;
+}
+}
+.mod_nav_inner ul li a {
+ display: block;
+/* padding: 0 0 0 20px; */
+ position: relative;
+}
+@media screen and (max-width:768px) {
+.mod_nav_inner ul li a {
+ display: block;
+ padding: 15px 0 15px 40px;
+}
+}
+.mod_nav_inner ul li a:before {
+ position: absolute;
+ margin-top: -8px;
+ top: 50%;
+ left: 4px;
+ color: #000;
+ content: " \f054";
+ font-family: FontAwesome;
+}
+@media screen and (max-width:768px) {
+.mod_nav_inner ul li a:before {
+ left: 15px;
+}
+}
+.mod_nav_inner ul li a:link {
+ color: #000;
+ text-decoration: none;
+}
+.mod_nav_inner ul li a:visited {
+ color: #000;
+ text-decoration: none;
+}
+.mod_nav_inner ul li a:hover, .mod_nav_inner ul li a:hover:before {
+ color: #009933;
+ text-decoration: none;
+}
+.mod_nav_inner ul li a:active, .mod_nav_inner ul li a:hover:before {
+ color: #009933;
+ text-decoration: none;
+}
+/* mod_nav_btn */ 
+.mod_nav_inner p.closebtn {
+ display:none;
+}
+ 
+@media screen and (max-width:768px){
+.mod_nav_inner p.closebtn{
+ display:block;
+ background-color:#000;
+ color:#FFF;
+ margin:0;
+ padding:10px;
+ line-height:1;
+ font-size:16px;
+ cursor:pointer;
+ text-align:center;
+}
+.mod_nav_inner p.closebtn i{
+ margin:0 5px 0 0;
+}
+}

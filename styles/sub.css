@@ -1,0 +1,298 @@
+@charset "utf-8";
+
+/*
+Date: Created January 11, 2020
+Author: Kaz.Kondo
+Description: Mikasa-Juku Official Website, HOME
+version： 1.0.0
+*/
+
+html {
+	overflow: auto;
+}
+
+/*** ブラウザで出現する上部、左右の隙間を削除する　***/
+* {
+	margin: 0;
+	padding: 0; 
+	box-sizing: border-box;
+}
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+	overflow: hidden; /* auto; */
+	*font-size: small; /* WinIE */
+	*font: x-small; /* Win IE */
+}
+
+#wrapper {
+	width: 100%;
+	min-width: 360px;
+	max-width: 1200px; /* 900px; */
+	margin-left: auto;
+	margin-right: auto;
+	color: #333;
+}
+
+#container {
+	overflow: hidden;	
+}
+
+.flex_cnt {
+    display: flex;
+}
+	
+
+/*** ヘッダーのスタイル設定 ***/
+header {
+	background: linear-gradient(rgba(255,255,0,0.25), #ffffff);
+	background: -webkit-linear-gradient(rgba(255,255,0,0.25), #ffffff);
+	margin: 0 -200%; /* マージンを追記 */
+	padding: 0 200% 0 200%; /* マージンで横にはみ出した部分を戻す */
+	font-size:1em;
+}
+.rogo_block {
+	padding: 40px 20px 0px 20px;
+	position: relative;
+}
+.block_element {
+	margin: auto;
+	display: table-cell;
+	width: auto;
+	vertical-align: top;
+/*	border: 1px solid #666; */
+}
+.block_element h1 {
+	color: #000; /* #ff5a00; */
+	font-weight: 900;
+	display: inline;
+	position: absolute; /*絶対配置*/
+	top: 25px; /* 15%; */
+	left: 13%;
+	text-shadow: 5px 5px 5px rgba(255,255,255,1.0);
+}
+.block_element h2 {
+	color: #ff5a00; /* #8b0000; */
+	font-size: 1.25rem;
+	font-weight: 600;
+	display: inline;
+}
+.down_line {
+	padding-top: 2.0rem;
+}
+.block_element a {
+	text-decoration: none;
+	color: #daa520
+}
+.block_element .thispage {
+	text-decoration: none; /* underline; */
+	color: #8b0000;
+	font-weight: bold;
+/*	text-shadow: 2px 2px 2px rgba(139,0,0,0.25); */
+	text-shadow: 2px 2px 2px rgba(0,0,150,0.25);
+}
+.block_element a:hover,
+.block_element a:active,
+.block_element a:focus {
+	color: #cd5c5c; /* blue; */
+	font-weight: bold;
+}
+header ul {
+	list-style: none;
+}
+.main-nav {
+	display: flex; /* block; */
+	flex-wrap: wrap; /* no-wrap; /* multiple; */
+	line-height: 1.2rem;
+}
+.main-nav {
+	margin: 0; /* マージンを追記 */
+	padding: 0; /* マージンで横にはみ出した部分を戻す */
+/*	width: 100%; */
+	max-width: 1000px;
+	margin-left:-15px;
+	font-size: 0.9rem; /* 85%; */
+}
+.navbar.nav {
+/*	margin-left: -27px; */
+}
+.main-nav a {
+	margin: 0px;
+/*	border-radius: 5px; */
+/*	background: #e6e6fa; */
+	display: block;
+	padding: 5px 15px 5PX 0;
+	text-decoration: none;
+}
+.navbar-toggler {
+	margin-left:-10px;
+}
+
+/*** mainのスタイル ***/
+#main {
+	margin-top: 30px;
+}
+#main h2 {
+	padding-left: 20px;
+	border-bottom: 1px solid #000;
+	line-height: 1.5em;
+	margin-bottom: 25px;
+}
+#main h3 {
+/*	padding-left: 20px; */
+}
+#main hr {
+	margin-top: 0;
+}
+.jlpt_test {
+	overflow-x: auto; /* scroll; */
+/*	padding-left: 20px; */
+}
+
+/*** secondaryのスタイル ***/
+#secondary {
+	margin-top: 35px;
+	margin-bottom: 50px;
+}
+#link_site {
+	margin-top: 50px;
+/*	padding-top: 20px; */
+}
+.link_site {
+	margin-right: 20px;
+	margin-top: 10px;
+}
+.link_site img {
+	max-width: 100%;
+}
+.side_title {
+	margin-top: 30px;
+}
+
+/*++++++++++++++++++++++++++++++++++++++++++++++*/
+/* blog style                                   */
+/*++++++++++++++++++++++++++++++++++++++++++++++*/
+#feed {
+	width: auto; /* 360px; /* 400px; */
+	height: 500px;
+	margin: 0;
+	margin-right: 20px;
+	padding-left: 40px;
+	overflow-y: scroll;
+	font-size:12px;
+	}
+#feed img {
+	width: 35%;
+	height: 35%;
+}
+#feed ul li {
+/*	width: 120%; */
+	line-height:1.8em;
+	margin:0 0 10px -40px;
+	padding-bottom:10px;
+	list-style: none;
+	border-width: 0 0 1px 0;
+	border-bottom: dotted;
+	border-color: #cccccc;
+	}
+#feed ul li p.wp {
+	font-weight:bold;
+	margin-bottom:6px;
+	}
+#feed ul li div {
+	float:left;
+	margin-right:8px;
+	}
+#feed ul li p.day {
+	text-align:right;
+	margin:6px 6px 0 0;
+	}
+
+/***　これよりフッターの設定　***/
+footer {
+	background: linear-gradient(#ffffff, rgba(255,255,0,0.5));
+	background: -webkit-linear-gradient(#ffffff,rgba(255,255,0,0.5)); /*safari use*/
+	margin: 0 -200%; /* マージンを追記 */
+	padding: 0 200% 3% 200%;/* マージンで横にはみ出した部分を戻す */
+	height: auto;
+	color: #333; /* #ff4500; */
+}
+.safari {
+	position: absolute;
+/*	top: 0px; */
+	left: -100px;
+/*	bottom: -100px; */
+/*	right: 0px; */
+}
+footer ul {
+	list-style: none;
+	margin-left: 10px;
+}
+.footer-nav {
+/*	margin-top: -10px; */
+	padding-top: 25px;
+	font-size: 0.85rem; /* 85%; */
+	line-height:70%;
+/*	color: #333; /* #ff4500; */
+}
+.footer-nav {
+/*
+	display:-webkit-box;
+	display:-moz-box;
+	display:-ms-flexbox;
+	display:-webkit-flex;
+	display:-moz-flex;
+*/
+	display: flex; /* block; */
+/*
+	-webkit-box-lines:multiple;
+	-moz-box-lines:multiple;
+	-webkit-flex-wrap:wrap;
+	-moz-flex-wrap:wrap;
+	-ms-flex-wrap:wrap;
+*/
+	flex-wrap: wrap; /* no-wrap; /* multiple; */
+/*	justify-content: space-between; /* center; /* space-between; /* flex-end; */
+}
+.footer-nav a {
+	margin: 5px;
+/*	color: #333; /* #fff; */
+	display: block;
+	padding: 5px 15px 5PX 0;
+	text-decoration: none;
+	color: #333; /* #ff4500; */
+}
+.footer-nav .thispage {
+	text-decoration: none; /* underline; */
+	font-weight: bold;
+/*	color: #333; /* #fff; */
+	text-shadow: 2px 2px 2px rgba(0,0,150,0.25);
+}
+.footer-nav a:hover, .footer-nav a:active {
+	color: #cd5c5c; /* blue; */
+	font-weight: bold;
+}
+.fixtable {
+	border-collapse: collapse; 
+	margin-right: auto; 
+	table-layout: fixed;
+}
+
+
+/***　その他のスタイル　***/
+.blue_text {
+	color: #0000cd !important;
+}
+.centered {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+hr.ridgeline {
+	background-image: url(../images/ridgeline-s.png);
+	height: 15px;
+	border: none;
+	opacity: 0.75;
+	margin-bottom: 0px;
+}
+

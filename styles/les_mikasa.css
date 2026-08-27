@@ -1,0 +1,174 @@
+@charset "utf-8";
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+	overflow: hidden; /* auto; */
+	*font-size: small; /* WinIE */
+	*font: x-small; /* Win IE */
+}
+#wrapper {
+	width: 100%;
+	min-width: 400px;
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	color: #333;
+}
+header {
+	background: linear-gradient(rgba(255,255,0,0.25), #ffffff);
+	background: -webkit-linear-gradient(rgba(255,255,0,0.25), #ffffff); /*safari use*/
+	margin: 0 -200%; /* マージンを追記 */
+	padding: 0 200% 0 200%; /* マージンで横にはみ出した部分を戻す */
+	font-size:1em;
+}
+header h2 {
+	padding-top: 20px;
+}
+/*** テーブルの書式設定 ***/
+.box_srcollbar {
+	width:600px;
+	height: 400px;
+	padding:5px;
+	border:1px solid #000; 
+	background-color: rgba( 255, 255, 0, 0.01 );
+	color:#000;
+	font-size: 13px;
+	border: none;
+/*	overflow: auto; */
+/*	overflow-y: scroll; */
+/*	overflow-x: scroll; */
+}
+/*
+table {
+	margin-right: 5px;
+	margin-left: 10px;
+}
+*/
+td:last-of-type {
+	text-align: left;
+	padding: 5px 5px;
+}
+a.gray_txt {
+	color: #333;
+}
+
+
+/***　これよりフッターの設定　***/
+footer{
+	background: linear-gradient(#ffffff, rgba(255,255,0,0.5));
+	background: -webkit-linear-gradient(#ffffff,rgba(255,255,0,0.5)); /*safari use*/
+	margin: 0 -200%; /* マージンを追記 */
+	padding: 0 200% 3% 200%;/* マージンで横にはみ出した部分を戻す */
+	height: auto;
+	color: #333; /* #ff4500; */
+}
+.fixtable {
+	border-collapse: collapse; 
+	margin-right: auto; 
+	table-layout: fixed;
+}
+
+/* リンクの文字色設定 */
+
+
+/***　その他のスタイル　***/
+.blue_text {
+	color: #0000cd !important;
+}
+.centered {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+/*
+td.left_justified {
+	text-align: left;
+}
+*/
+hr.ridgeline {
+	background-image: url(../images/ridgeline-s.png);
+	height: 15px;
+	border: none;
+	opacity: 0.75;
+	margin: 0 -200%; /* マージンを追記 */
+	padding: 0 200% 0 200%; /* マージンで横にはみ出した部分を戻す */
+	font-size:1em;
+}
+.top_margin_20 {
+	margin-top: 20px;
+}
+
+/*** レスポンシブ対応 ***/
+/* ＰＣ用設定　*/
+@media screen and (min-width: 600px) {
+	body{
+		width: auto;
+	}
+	table.backnon {
+		width: 560px;
+		margin-right: 5px;
+		margin-left: 10px;
+	}
+	th.th01 {
+		width: 60px;
+	}
+	th.th02 {
+		width: 110px;
+	}
+	th.th03 {
+		width: 390px;
+	}
+	div.mgr10 {
+		padding-right: 0px;
+	}
+	.box_srcollbar {
+		overflow:auto;
+/*		overflow-y: scroll; */
+/*		overflow-x: scroll; */
+	}
+}
+
+/* タブレット用設定　*/
+@media screen and (max-width: 599px) {
+	body{
+		width:auto;
+	}
+	table.backnon {
+		width: 80%;
+		margin-right: 5px;
+		margin-left: 5px;
+	}
+	th.th03 {
+		width: 60%;
+	}
+	div.mgr10 {
+		padding-right: 20px;
+	}
+	.box_srcollbar {
+		overflow: auto;
+/*		overflow-y: scroll; */
+/*		overflow-x: scroll; */
+	}
+}
+/* スマホ用設定　*/
+@media screen and (max-width: 479px) {
+	body{
+		width: auto;
+	}
+	table.backnon {
+		width: 58%;
+		margin-right: 5px;
+		margin-left: 5px;
+	}
+	th.th03 {
+		width: 60%;
+	}
+	div.mgr10 {
+		padding-right: 30px;
+	}
+	.box_srcollbar {
+		overflow: auto;
+/*		overflow-y: scroll; */
+/*		overflow-x: scroll; */
+	}
+}

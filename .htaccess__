@@ -1,0 +1,24 @@
+Redirect permanent /index.html/ https://mikasajyuku.jp/blog/
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{ENV:HTTPS} !on
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress
+DirectoryIndex index.html index.htm index.shtml index.php index.cgi
+Options -Indexes
+# AuthUserFile /home/kogaku-sha/www/mikasajyuku/home/.htpasswd
+AuthType Basic
+AuthName "Web access"
+Require valid-user
+Satisfy all
+Order deny,allow
