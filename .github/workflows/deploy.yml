@@ -23,6 +23,6 @@ jobs:
           remote-port: 22
           remote-user: ${{ secrets.SFTP_USERNAME }}
           remote-password: ${{ secrets.SFTP_PASSWORD }}
-          remote-path: "/home/kogaku-sha/www/"
+          remote-path: "/home/kogaku-sha/www/mikasajyuku/"
           sync-delta-excludes: ".git/ .github/ node_modules/ wp-content/uploads/ wp-content/cache/ wp-content/backups/ README.md screenshot.png"
 
