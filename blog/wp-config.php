@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The base configurations of the WordPress.
  *
@@ -20,16 +21,16 @@
 // を使用し、必ず UTF-8 の BOM なし (UTF-8N) で保存してください。
 
 // ** MySQL 設定 - こちらの情報はホスティング先から入手してください。 ** //
-$is_local = (isset($_SERVER['HTTP_HOST']) && in_array($_SERVER['HTTP_HOST'], ['localhost', 'mikasajyuku.test'])) 
-            || (isset($_SERVER['REMOTE_ADDR']) && in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']))
-            || (php_sapi_name() === 'cli');
+$is_local = (isset($_SERVER['HTTP_HOST']) && in_array($_SERVER['HTTP_HOST'], ['localhost', 'mikasajyuku.test']))
+    || (isset($_SERVER['REMOTE_ADDR']) && in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']))
+    || (php_sapi_name() === 'cli');
 
 if ($is_local) {
     define('DB_NAME', 'kogaku-sha_mksdb');
     define('DB_USER', 'root');
     define('DB_PASSWORD', '');
     define('DB_HOST', '127.0.0.1');
-    
+
     // Automatically set URLs for Local development
     if (isset($_SERVER['HTTP_HOST'])) {
         define('WP_HOME', 'http://' . $_SERVER['HTTP_HOST'] . '/mikasajyuku/blog');
@@ -91,11 +92,11 @@ define('WPLANG', 'ja');
  * この値を true にすると、開発中に注意 (notice) を表示します。
  * テーマおよびプラグインの開発者には、その開発環境においてこの WP_DEBUG を使用することを強く推奨します。
  */
-/* define('WP_DEBUG', false); */
-define('WP_DEBUG', true);
-define('WP_DEBUG_LOG', './debug.log');
-define('WP_DEBUG_DISPLAY', true);
-@ini_set('display_errors', 1);
+define('WP_DEBUG', false);
+// define('WP_DEBUG_LOG', './debug.log');
+define('WP_DEBUG_LOG', false);
+define('WP_DEBUG_DISPLAY', false);
+@ini_set('display_errors', 0);
 
 /* define('RELOCATE', true); */
 
@@ -106,9 +107,8 @@ define('WP_DEBUG_DISPLAY', true);
 /* 編集が必要なのはここまでです ! WordPress でブログをお楽しみください。 */
 
 /** Absolute path to the WordPress directory. */
-if ( !defined('ABSPATH') )
-	define('ABSPATH', dirname(__FILE__) . '/');
+if (!defined('ABSPATH'))
+    define('ABSPATH', dirname(__FILE__) . '/');
 
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
-
