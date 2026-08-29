@@ -4,69 +4,53 @@ if (!isset($_GET['secret']) || $_GET['secret'] !== 'mikasa2026') {
     die("Access denied");
 }
 
-$databases = [
-    'main' => [
-        'name' => 'kogaku-sha_mikasa_hp',
-        'prefix' => 'mikasahp_wp'
-    ],
-    'blog' => [
-        'name' => 'kogaku-sha_mksdb',
-        'prefix' => 'mikasahp_wp' // WordPress tables usually share prefix or use standard wp_
-    ]
-];
+// 1. Cập nhật trang Blog (Database: kogaku-sha_mksdb)
+echo "<h3>1. Cập nhật Trang Blog (Database: kogaku-sha_mksdb)</h3>";
+$connBlog = @new mysqli("mysql633.db.sakura.ne.jp", "kogaku-sha", "L-pt18HL", "kogaku-sha_mksdb");
+if ($connBlog->connect_error) {
+    echo "<b>Lỗi kết nối database blog:</b> " . $connBlog->connect_error . "<br>";
+} else {
+    // Tìm tên bảng users (thường là mikasahp_wpusers)
+    $res = $connBlog->query("SHOW TABLES LIKE '%users'");
+    $userTableBlog = $res ? $res->fetch_row()[0] : 'mikasahp_wpusers';
 
-foreach ($databases as $key => $dbInfo) {
-    echo "<h2>Database: {$dbInfo['name']} ($key)</h2>";
-    $conn = @new mysqli("mysql633.db.sakura.ne.jp", "kogaku-sha", "L-pt18HL", $dbInfo['name']);
-    if ($conn->connect_error) {
-        echo "<b>Connection failed:</b> " . $conn->connect_error . "<br><br>";
-        continue;
-    }
-
-    // Check table prefix
-    $tables = [];
-    $res = $conn->query("SHOW TABLES");
-    while ($row = $res->fetch_row()) {
-        $tables[] = $row[0];
-    }
-
-    $user_table = "";
-    foreach ($tables as $t) {
-        if (strpos($t, 'users') !== false) {
-            $user_table = $t;
-            break;
-        }
-    }
-
-    if (!$user_table) {
-        echo "<b>Error:</b> No users table found in {$dbInfo['name']}.<br><br>";
-        $conn->close();
-        continue;
-    }
-
-    // Xử lý reset mật khẩu nếu có tham số reset=1 và trùng với db cần reset (hoặc reset cả hai)
-    if (isset($_GET['reset']) && $_GET['reset'] === '1') {
-        $new_pass = 'mikasa123';
-        $sqlReset = "UPDATE $user_table SET user_pass = MD5('$new_pass') WHERE ID = 1";
-        if ($conn->query($sqlReset) === TRUE) {
-            echo "<b>Thành công:</b> Đã đặt lại mật khẩu cho tài khoản ID: 1 trong {$dbInfo['name']} thành <u>$new_pass</u>.<br>";
-        } else {
-            echo "<b>Lỗi reset trong {$dbInfo['name']}:</b> " . $conn->error . "<br>";
-        }
-    }
-
-    // Liệt kê danh sách users
-    $sql = "SELECT ID, user_login, user_email FROM $user_table";
-    $resUsers = $conn->query($sql);
-    if ($resUsers) {
-        echo "<ul>";
-        while ($row = $resUsers->fetch_assoc()) {
-            echo "<li>ID: " . $row['ID'] . " | Username: <b>" . $row['user_login'] . "</b> | Email: " . $row['user_email'] . "</li>";
-        }
-        echo "</ul>";
+    $newLoginBlog = 'yoko ishida';
+    $newPassBlog = 'dekirukotokara';
+    $sqlBlog = "UPDATE $userTableBlog SET user_login = '$newLoginBlog', user_pass = MD5('$newPassBlog') WHERE ID = 1";
+    
+    if ($connBlog->query($sqlBlog) === TRUE) {
+        echo "<b>Thành công:</b> Đã cập nhật ID = 1 thành:<br>";
+        echo "- Username mới: <b>$newLoginBlog</b><br>";
+        echo "- Password mới: <b>$newPassBlog</b><br><br>";
     } else {
-        echo "Error querying users in {$dbInfo['name']}: " . $conn->error . "<br>";
+        echo "<b>Lỗi cập nhật:</b> " . $connBlog->error . "<br><br>";
     }
-    $conn->close();
+    $connBlog->close();
+}
+
+// 2. Cập nhật trang Admin chính (Database: kogaku-sha_mikasa_hp)
+echo "<h3>2. Cập nhật Trang Admin chính (Database: kogaku-sha_mikasa_hp)</h3>";
+$connMain = @new mysqli("mysql633.db.sakura.ne.jp", "kogaku-sha", "L-pt18HL", "kogaku-sha_mikasa_hp");
+if ($connMain->connect_error) {
+    echo "<b>Lỗi kết nối database main:</b> " . $connMain->connect_error . "<br>";
+} else {
+    // Tìm tên bảng users
+    $res = $connMain->query("SHOW TABLES LIKE '%users'");
+    $userTableMain = $res ? $res->fetch_row()[0] : 'mikasahp_wpusers';
+
+    $newLoginMain = 'Mikasa teacher';
+    $newPassMain = 'Mikasanakanoku288';
+    $newEmailMain = 'info@mikasajyuku.org';
+    $sqlMain = "UPDATE $userTableMain SET user_login = '$newLoginMain', user_pass = MD5('$newPassMain'), user_email = '$newEmailMain' WHERE ID = 1";
+
+    if ($connMain->query($sqlMain) === TRUE) {
+        echo "<b>Thành công:</b> Đã cập nhật ID = 1 thành:<br>";
+        echo "- Username mới: <b>$newLoginMain</b><br>";
+        echo "- Password mới: <b>$newPassMain</b><br>";
+        echo "- Email mới: <b>$newEmailMain</b><br><br>";
+    } else {
+        echo "<b>Lỗi cập nhật:</b> " . $connMain->error . "<br><br>";
+    }
+    $connMain->close();
 }
 ?>
