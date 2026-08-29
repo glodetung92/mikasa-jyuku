@@ -159,9 +159,33 @@ if ($http_host === 'localhost') {
 					</div>
 					<!-- Slide 終了 -->
 
-					<!-- オンライン三笠塾　開始 -->
+					<!-- ディスカッション & 塾長 & 講師 バナー 開始 -->
 					<div class="row">
 						<div class="col-md-12" style="margin-top:30px;">
+							<section class="link_site">
+								<a href="./mikasa_hp/category/discussion/" target="_blank"><img src="./images/link-7.png" title="ディスカッション" alt="ディスカッション"></a>
+							</section>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<section class="link_site">
+								<a href="./mikasa_hp/category/jukucho/" target="_blank"><img src="./images/link-5.png" title="日々塾長の思い" alt="塾長"></a>
+							</section>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<section class="link_site">
+								<a href="./mikasa_hp/category/kousi/" target="_blank"><img src="./images/link-6.png" title="より高度な日本語への挑戦" alt="講師"></a>
+							</section>
+						</div>
+					</div>
+					<!-- ディスカッション & 塾長 & 講師 バナー 終了 -->
+
+					<!-- オンライン三笠塾　開始 -->
+					<div class="row">
+						<div class="col-md-12">
 							<section class="link_site">
 								<a href="./mikasa_hp/category/general/" target="_blank"><img src="./images/link-1-fixed.png" title="Mikasa-Juku chính thức &#34;Bản tin Mikasa-Juku&#34;" alt="三笠塾"></a>
 							</section>
